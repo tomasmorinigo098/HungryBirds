@@ -26,7 +26,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         bgGenero = new javax.swing.ButtonGroup();
@@ -127,6 +127,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 boxDNIKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                boxDNIKeyTyped(evt);
+            }
         });
         getContentPane().add(boxDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 140, 30));
 
@@ -149,6 +152,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         boxSue.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 boxSueKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                boxSueKeyTyped(evt);
             }
         });
         getContentPane().add(boxSue, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 150, 160, 30));
@@ -238,6 +244,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         boxTel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 boxTelKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                boxTelKeyTyped(evt);
             }
         });
         getContentPane().add(boxTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 140, 30));
@@ -331,7 +340,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 220, 20, 20));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /*a) creamos nuevos propio Table Model*/
     private void crearTableModel() {
@@ -361,39 +370,47 @@ public class FrmEmpleado extends javax.swing.JFrame {
         }
     }
     
-    private void boxApeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxApeKeyPressed
+    private void boxApeKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.boxNom.requestFocus(); }
-    }//GEN-LAST:event_boxApeKeyPressed
+    }                                 
 
-    private void boxNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxNomKeyPressed
+    private void boxNomKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.boxDNI.requestFocus(); }
-    }//GEN-LAST:event_boxNomKeyPressed
+    }                                 
 
-    private void boxDNIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxDNIKeyPressed
+    private void boxDNIKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.cmbEdad.requestFocus(); }
-    }//GEN-LAST:event_boxDNIKeyPressed
+    }                                 
 
-    private void boxSueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxSueKeyPressed
+    private void boxSueKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.btnEnviar.requestFocus(); }
-    }//GEN-LAST:event_boxSueKeyPressed
+    }                                 
 
-    private void boxDomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxDomKeyPressed
+    private void boxDomKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.boxTel.requestFocus(); }
-    }//GEN-LAST:event_boxDomKeyPressed
+    }                                 
 
-    private void boxTelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxTelKeyPressed
+    private void boxTelKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.cmbCar.requestFocus(); }
-    }//GEN-LAST:event_boxTelKeyPressed
+    }                                 
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.limpiarDatos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    }                                          
 
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         if (this.boxApe.getText().length() == 0 || this.boxNom.getText().length() == 0 || this.boxDNI.getText().length() == 0 ||
             (!this.rbMas.isSelected() && !this.rbFem.isSelected()) || this.boxTel.getText().length() == 0 || this.boxDom.getText().length() == 0 || 
             (!this.rbMan.isSelected() && !this.rbTar.isSelected()) || this.boxSue.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debe completar todos los campos!!!", "Atención", JOptionPane.WARNING_MESSAGE);
+        } else if (this.boxDNI.getText().startsWith("0") || this.boxDNI.getText().length() < 8) {
+            JOptionPane.showMessageDialog(null, "El DNI ingresado no es válido", "Atención", JOptionPane.WARNING_MESSAGE);
+        } else if (!this.boxTel.getText().startsWith("11") || this.boxTel.getText().length() < 10) {
+            JOptionPane.showMessageDialog(null, "El teléfono ingresado no es válido", "Atención", JOptionPane.WARNING_MESSAGE);
+        } else if (this.dniRepetido(this.boxDNI.getText())) {
+            JOptionPane.showMessageDialog(null, "El DNI ingresado ya ha sido registrado, intente con otro.", "Atención", JOptionPane.WARNING_MESSAGE);
+        } else if (this.telRepetido(this.boxTel.getText())) {
+            JOptionPane.showMessageDialog(null, "El teléfono ingresado ya ha sido registrado, intente con otro.", "Atención", JOptionPane.WARNING_MESSAGE);
         } else {
    
             ArrayList<Empleado> lista = new FlujoEntradaSalida("empleados.ddr").getDeserializacion();
@@ -444,25 +461,25 @@ public class FrmEmpleado extends javax.swing.JFrame {
             
             System.out.println("GUARDADO!");
         }
-    }//GEN-LAST:event_btnEnviarActionPerformed
+    }                                         
 
-    private void cmbEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbEdadKeyPressed
+    private void cmbEdadKeyPressed(java.awt.event.KeyEvent evt) {                                   
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.cmbLoc.requestFocus(); }
-    }//GEN-LAST:event_cmbEdadKeyPressed
+    }                                  
 
-    private void cmbLocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbLocKeyPressed
+    private void cmbLocKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.boxDom.requestFocus(); }
-    }//GEN-LAST:event_cmbLocKeyPressed
+    }                                 
 
-    private void cmbCarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbCarKeyPressed
+    private void cmbCarKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.cmbAnt.requestFocus(); }
-    }//GEN-LAST:event_cmbCarKeyPressed
+    }                                 
 
-    private void cmbAntKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbAntKeyPressed
+    private void cmbAntKeyPressed(java.awt.event.KeyEvent evt) {                                  
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) { this.boxSue.requestFocus(); }
-    }//GEN-LAST:event_cmbAntKeyPressed
+    }                                 
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
         this.celdasActivadas = true;
         this.btnModificar.setEnabled(false);
@@ -479,9 +496,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.setCeldaCargos(this.jTable1.getColumnModel().getColumn(9));
         this.setCeldaAnt(this.jTable1.getColumnModel().getColumn(10));
         
-    }//GEN-LAST:event_btnModificarActionPerformed
+    }                                            
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         
         this.celdasActivadas = false;
         this.btnModificar.setEnabled(true);
@@ -522,9 +539,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         
         ArrayList<Empleado> actualizarRegistros = new FlujoEntradaSalida("empleados.ddr").getDeserializacion();
         this.volcarDatos(actualizarRegistros);      
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }                                          
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         if (this.jTable1.getSelectedRow() == -1) { //si no seleccionamos ninguna fila de la tabla (-1) lanzamos el siguiente JOptionPane
             javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila de la tabla para eliminarla!!!", "Atención", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -578,8 +595,53 @@ public class FrmEmpleado extends javax.swing.JFrame {
                 System.out.println("NO eliminaste el articulo " + id);
             }
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }                                           
 
+    private void boxDNIKeyTyped(java.awt.event.KeyEvent evt) {                                
+        this.permitirUnicamenteNros(evt, this.boxDNI);
+        this.limiteDeCaracteres(evt, this.boxDNI, 8);
+    }                               
+
+    private void boxSueKeyTyped(java.awt.event.KeyEvent evt) {                                
+        this.permitirUnicamenteNros(evt, this.boxSue);
+    }                               
+
+    private void boxTelKeyTyped(java.awt.event.KeyEvent evt) {                                
+        this.permitirUnicamenteNros(evt, this.boxTel);
+        this.limiteDeCaracteres(evt, this.boxTel, 10);
+    }                               
+
+    private void permitirUnicamenteNros(java.awt.event.KeyEvent evt, javax.swing.JTextField box) {
+        char c = evt.getKeyChar();
+        if ((c < '0') || (c > '9')) {
+            evt.consume();
+        }
+    }
+    
+    private void limiteDeCaracteres(java.awt.event.KeyEvent evt, javax.swing.JTextField box, int limite) {
+        if (box.getText().length() == limite) {
+            evt.consume();
+        }
+    }
+    
+    private boolean dniRepetido(String dni) {
+        for (int i = 0; i < this.empleados.size(); i++) {
+            if (this.empleados.get(i) != null && this.empleados.get(i).getDni().equals(dni)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean telRepetido(String tel) {
+        for (int i = 0; i < this.empleados.size(); i++) {
+            if (this.empleados.get(i) != null && this.empleados.get(i).getTelefono().equals(tel)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void addEdades(javax.swing.JComboBox cmb) {
         for (int i = 18; i <= 65; i++) {
             cmb.addItem(String.valueOf(i));
@@ -706,7 +768,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         
     }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.ButtonGroup bgGenero;
     private javax.swing.ButtonGroup bgTurno;
     private javax.swing.JTextField boxApe;
@@ -744,7 +806,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbMan;
     private javax.swing.JRadioButton rbMas;
     private javax.swing.JRadioButton rbTar;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     
 }
